@@ -15,7 +15,7 @@ export default function ProjectCard({project: {title, image, description, isLive
         <Image
           src={image}
           alt={title}
-          className='h-[200px]'
+          className='h-[200px] object-cover'
         />
       </Card.Section>
 

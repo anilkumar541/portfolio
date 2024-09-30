@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import FloatingInput from "../floating_input/FloatingInput";
 import { useSetState } from "@mantine/hooks";
 import { Button } from '@mantine/core';
@@ -6,9 +6,10 @@ import { IconArrowRight } from '@tabler/icons-react';
 import emailjs from '@emailjs/browser';
 
 export default function Contact() {
-    const service_id= "service_jxru1zo"
-    const template_id= "template_5x2qalj"
-    const public_key= "IteTW2Okt3xjsOAdk"
+    const service_id= import.meta.env.VITE_SERVICE_ID;
+    const template_id= import.meta.env.TEMPLATE_ID;
+    const public_key= import.meta.env.PUBLIC_KEY;
+    
     const form = {
         name: "",
         email: "",
@@ -16,6 +17,7 @@ export default function Contact() {
     };
 
     const [formData, setFormData] = useSetState(form);
+    const [msgStaus, setMessageStatus]= useState(false);
 
     const handleInputChange = (event) => {
         const { name, value } = event.target;
@@ -28,18 +30,20 @@ export default function Contact() {
 
     const handleSubmit = (event) => {
         event.preventDefault();
+        setMessageStatus(true); 
+
 
         // EmailJS integration
-        console.log(formData, "okkk");
-        
         emailjs.send(service_id, template_id, formData, public_key)
             .then(() => {
                 alert("Message sent successfully!");
-                console.log(form, "and", formData);
+                setMessageStatus(false); 
                 setFormData(form); // Reset form after submission
             }, (error) => {
                 console.error("Failed to send message:", error);
                 alert("Failed to send message. Please try again.");
+                setMessageStatus(false); 
+
             });
     };
 
@@ -64,8 +68,9 @@ export default function Contact() {
                         className="text-bgColor hover:text-bgColor font-bold"
                         rightSection={<IconArrowRight size={20} />}
                         onClick={handleSubmit} // Link the button with handleSubmit
+                        disabled={msgStaus}
                     >
-                        Send
+                        {msgStaus ? "Sending message..." : "Send"} {/* Update button text */}
                     </Button>
                 </div>
             </div>

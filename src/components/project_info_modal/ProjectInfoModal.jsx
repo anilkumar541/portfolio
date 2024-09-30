@@ -5,7 +5,7 @@ export default function ProjectInfoModal({opened, close, title, image, descripti
   
     return (
       <>
-        <Modal.Root opened={opened} onClose={close} scrollAreaComponent={ScrollArea.Autosize} size="50%">
+        <Modal.Root opened={opened} onClose={close} scrollAreaComponent={ScrollArea.Autosize} className='sm-min::w-[50%] w-[95%]'>
           <Modal.Overlay />
           <Modal.Content className='rounded-xl font-mono'>
             <Modal.Header className='bg-bgColor'>
@@ -33,15 +33,23 @@ export default function ProjectInfoModal({opened, close, title, image, descripti
                 </div>
 
                 {/* descc */}
-                <div className='text-gray-400 text-justify'>
+                <div className='text-gray-400'>
                     <p>{description}</p>
                 </div>
 
                 {/* button */}
 
                 <div className='flex justify-between my-5 text-primaryColor font-bold'>
-                  <button className=' border rounded px-3 border-primaryColor'><a href="">View code</a></button>
-                  <button className=' border rounded px-3 border-primaryColor'><a className='' href="">View live</a></button>
+                  <button className=' border rounded px-3 border-primaryColor'>
+                    {
+                      github ? <a href="#" target='_blank'>View code</a> : <p onClick={()=> alert("Code is not available yet.")}>View code</p>
+                    }
+                  </button>
+                  <button className=' border rounded px-3 border-primaryColor'>
+                    {
+                      link ? <a className='' href={link} target='_blank'>View live</a> : <p onClick={()=> alert("Not live yet.")}>View live</p>
+                    }
+                  </button>
                 </div>
 
             </Modal.Body>

@@ -7,16 +7,21 @@ import Sidebar from "../drawer/Sidebar";
 
 
 const menu= ["About", "Work", "Skills", "Experience", "Contact"]
-const NavLinks= ()=> {
+const NavLinks= ({closeSidebar})=> {
 
   const handleClick= (menuItem)=> {
     const section= document.getElementById(menuItem);
     if (section){
       section.scrollIntoView({behavior : "smooth"})
     }
+
+    if (closeSidebar) {
+      closeSidebar();
+    }
+    
   }
   return menu.map((menuItem, index) => {
-    return <a className=" text-textColor hover:text-primaryColor cursor-pointer" onClick={() => handleClick(menuItem)} key={index}>0{index+1}.{menuItem}</a>
+    return <a className="text-textColor hover:text-primaryColor cursor-pointer" onClick={() => handleClick(menuItem)} key={index}>0{index+1}.{menuItem}</a>
   })
 }
 

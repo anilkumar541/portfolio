@@ -10,7 +10,20 @@ export default function ResumeViewer({opened, close}) {
 
   function onDocumentLoadSuccess({ numPages }) {
     setNumPages(numPages);
-}
+  }
+
+  // Handle resizing based on screen width for the PDF viewer
+  const getPageWidth = () => {
+    // Use window.innerWidth for dynamic screen width calculation
+    const screenWidth = window.innerWidth;
+    // On mobile, ensure the PDF width fits the screen
+    if (screenWidth <= 450) {
+      return screenWidth * 0.9; // 90% of the screen width on mobile
+    }
+    // On larger screens, give a more comfortable width
+    return 600; // Fixed width on larger screens
+  };
+
 
   return (
     <Modal.Root opened={opened} onClose={close} scrollAreaComponent={ScrollArea.Autosize} size="auto">
@@ -28,7 +41,7 @@ export default function ResumeViewer({opened, close}) {
             </Modal.Header>
             <Modal.Body className='bg-bgColor'>
             <Document file="/resume/anil_kumar_full_stack_dev.pdf" onLoadSuccess={onDocumentLoadSuccess}>
-                <Page pageNumber={1} renderTextLayer={false} renderAnnotationLayer={false} />
+                <Page pageNumber={1} renderTextLayer={false} renderAnnotationLayer={false} width={getPageWidth()} />
             </Document>
             </Modal.Body>
           </Modal.Content>
