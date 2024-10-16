@@ -3,6 +3,7 @@ import { createTheme, MantineProvider} from "@mantine/core";
 import '@mantine/core/styles.css';
 import "./App.css"
 import { pdfjs } from 'react-pdf';
+import { useEffect, useState } from "react";
 
 
 
@@ -12,7 +13,25 @@ pdfjs.GlobalWorkerOptions.workerSrc = new URL(
 ).toString();
 
 function App() {
+  const [visitCount, setVisitCount]= useState(0);
+  const passkey= "Snow123$";
 
+
+  useEffect(()=> {
+    try {
+      //Fetch visitor count from CountAPI
+      const portfolio_url= "https://anilkumar-portfolio-01.netlify.app/";
+      const unique_key= "anilkumar-portfolio-01";
+      fetch(`https://api.countapi.xyz/hit/${unique_key}/visits`)
+      .then((response) => response.json())
+      .then((data)=> {
+        setVisitCount(data.value);
+      })
+    } catch (error) {
+     console.log("Error fetching the visit count", error);
+      
+    }
+  })
   const theme= createTheme({
     breakpoints: {
       "xs": "320px",
@@ -28,7 +47,7 @@ function App() {
   return (
     <>
       <MantineProvider theme={theme}>
-        <Homepage />
+        <Homepage passkey= {passkey} visitCount= {visitCount} />
       </MantineProvider>
     </>
   );
