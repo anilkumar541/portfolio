@@ -25,7 +25,6 @@ function App() {
       .catch(error => console.error('Error logging visit:', error));
   }, []);
 
-  
   const theme= createTheme({
     breakpoints: {
       "xs": "320px",
