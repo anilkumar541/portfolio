@@ -10,7 +10,7 @@ import Contact from '../contact/Contact'
 import Footer from '../footer/Footer'
 import SocialMedia from '../social_media_for_mobile/SocialMedia'
 
-export default function Homepage({ passkey, visitCount }) {
+export default function Homepage() {
   return (
     <>
         <Header />
@@ -21,7 +21,7 @@ export default function Homepage({ passkey, visitCount }) {
         <Contact />
         <Mail />
         <SocialMedia />
-        <Footer passkey= {passkey} visitCount= {visitCount} />
+        <Footer />
         <SocialSidebar />
     </>
   )

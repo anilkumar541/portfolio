@@ -42,7 +42,7 @@ export default function ProjectInfoModal({opened, close, title, image, descripti
                 <div className='flex justify-between my-5 text-primaryColor font-bold'>
                   <button className=' border rounded px-3 border-primaryColor'>
                     {
-                      github ? <a href="#" target='_blank'>View code</a> : <p onClick={()=> alert("Code is not available yet.")}>View code</p>
+                      github ? <a href={github} target='_blank'>View code</a> : <p onClick={()=> alert("Code is not available yet.")}>View code</p>
                     }
                   </button>
                   <button className=' border rounded px-3 border-primaryColor'>

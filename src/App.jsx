@@ -13,9 +13,6 @@ pdfjs.GlobalWorkerOptions.workerSrc = new URL(
 ).toString();
 
 function App() {
-  const [visitCount, setVisitCount]= useState(0);
-  const passkey= "Snow123$";
-
 
   useEffect(() => {
     // Fetch the Netlify function to log the visit with timestamp
@@ -40,7 +37,7 @@ function App() {
   return (
     <>
       <MantineProvider theme={theme}>
-        <Homepage passkey= {passkey} visitCount= {visitCount} />
+        <Homepage />
       </MantineProvider>
     </>
   );

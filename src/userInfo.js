@@ -1,5 +1,6 @@
 import care24 from "../src/assets/care24.jpg"
 import amazon from "../src/assets/amazon.jpg"
+import one from "../src/assets/one.png"
 
 const userInfo= {
     name: "Anil Kumar",
@@ -28,15 +29,24 @@ const projectsInfo= [
         link: "https://care24.co.in/",
         github: ""
     },
+    // {
+    //     title: "Amazon Clone",
+    //     description: "Coming soon... This is going to be a full stack project(Django and React).",
+    //     isLive: false,
+    //     image: amazon,
+    //     technologies: ["Python", "Django", "React", "Postgresql", "Tailwind"],
+    //     link: "",
+    //     github: ""
+    // },
     {
-        title: "Amazon Clone",
-        description: "Coming soon... This is going to be a full stack project(Django and React).",
-        isLive: false,
-        image: amazon,
-        technologies: ["Python", "Django", "React", "Postgresql", "Tailwind"],
-        link: "",
-        github: ""
-    },
+        title: "Online Forum Platform",
+        description: "The Online Forum Platform is designed to deliver an engaging and dynamic user experience. It features tags and questions, interactive Q&A with likes and dislikes, and real-time updates powered by WebSockets. The platform ensures security with user authentication and includes search by tags and pagination for efficient content navigation. Built using Django for the backend and ReactJS for the frontend, this project provides a seamless experience for users.",
+        isLive: true,
+        image: one, 
+        technologies: ["Django", "ReactJS", "WebSockets"],
+        link: "https://classy-nasturtium-fcfe26.netlify.app/",
+        github: "https://github.com/anilkumar541?tab=repositories"
+      }
    
 ]
 
