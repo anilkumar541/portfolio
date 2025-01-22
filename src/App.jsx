@@ -17,21 +17,15 @@ function App() {
   const passkey= "Snow123$";
 
 
-  useEffect(()=> {
-    try {
-      //Fetch visitor count from CountAPI
-      const portfolio_url= "https://anilkumar-portfolio-01.netlify.app/";
-      const unique_key= "anilkumar-portfolio-01";
-      fetch(`https://api.countapi.xyz/hit/${unique_key}/visits`)
-      .then((response) => response.json())
-      .then((data)=> {
-        setVisitCount(data.value);
-      })
-    } catch (error) {
-     console.log("Error fetching the visit count", error);
-      
-    }
-  })
+  useEffect(() => {
+    // Fetch the Netlify function to log the visit with timestamp
+    fetch('/.netlify/functions/logVisit')
+      .then(response => response.json())
+      .then(data => console.log('Visit logged:', data.message))
+      .catch(error => console.error('Error logging visit:', error));
+  }, []);
+
+  
   const theme= createTheme({
     breakpoints: {
       "xs": "320px",
